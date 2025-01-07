@@ -48,7 +48,8 @@ def dqn_update_no_target(
     q_values = q_net(replay_data.observations)
     # Select the Q-values corresponding to the actions that were selected
     # during data collection
-    current_q_values = th.gather(q_values, dim=1, index=replay_data.actions)
+    current_q_values = th.gather(q_values, dim=1, 
+                                 index=replay_data.actions)
     # Reshape from (batch_size, 1) to (batch_size,) to avoid broadcast error
     current_q_values = current_q_values.squeeze(dim=1)
 
